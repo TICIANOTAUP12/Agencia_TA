@@ -28,6 +28,15 @@ function seoInjectPlugin(): Plugin {
 
 export default defineConfig({
   base: '/point/',
+  server: {
+    proxy: {
+      '/api/core': {
+        target: 'http://127.0.0.1:3040',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/core/, ''),
+      },
+    },
+  },
   plugins: [
     figmaAssetResolver(),
     seoInjectPlugin(),
