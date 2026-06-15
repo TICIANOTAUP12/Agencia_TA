@@ -225,7 +225,7 @@ function HeroSection() {
 
         {/* Image card */}
         <div style={{ position: "relative" }}>
-          <div style={{ background: "#ffffff", borderRadius: 24, padding: isMobile ? 20 : 28, boxShadow: "0 24px 80px rgba(15,23,42,0.12)", position: "relative", overflow: "hidden" }}>
+          <div className="po-card po-card--elevated" style={{ borderRadius: 24, padding: isMobile ? 20 : 28, position: "relative", overflow: "hidden" }}>
             <div style={{ position: "absolute", top: -40, right: -40, width: 180, height: 180, borderRadius: "50%", background: "#eff6ff" }} />
             <img
               src={POINT_HERO_SRC}
@@ -236,7 +236,7 @@ function HeroSection() {
                 border: "1px solid rgba(29,78,216,0.12)",
               }}
             />
-            <div style={{ marginTop: 16, padding: "14px 16px", background: "#f8fafc", borderRadius: 10, display: "flex", alignItems: "center", gap: 12 }}>
+            <div className="po-card-chip" style={{ marginTop: 16, padding: "14px 16px", borderRadius: 10, display: "flex", alignItems: "center", gap: 12 }}>
               <div style={{ width: 36, height: 36, borderRadius: 9, background: "#dbeafe", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 <CheckCircle size={18} color="#1d4ed8" />
               </div>
@@ -267,7 +267,7 @@ const painPoints = [
 function PainPointsSection() {
   const isMobile = useIsMobile();
   return (
-    <section id="como-funciona" style={{ background: "#ffffff", padding: isMobile ? "64px 20px" : "96px 24px" }}>
+    <section id="como-funciona" className="po-section-surface" style={{ padding: isMobile ? "64px 20px" : "96px 24px" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <span style={{ fontFamily: F, fontSize: 12, fontWeight: 700, color: "#1d4ed8", letterSpacing: "0.1em", textTransform: "uppercase", display: "block", marginBottom: 10 }}>
@@ -278,7 +278,7 @@ function PainPointsSection() {
             <span style={{ color: "#1d4ed8" }}>elimina de raíz</span>
           </h2>
         </div>
-        <div style={{ marginBottom: 40, borderRadius: 20, overflow: "hidden", boxShadow: "0 12px 40px rgba(15,23,42,0.08)", border: "1px solid rgba(15,23,42,0.06)" }}>
+        <div className="po-media-frame" style={{ marginBottom: 40, borderRadius: 20, overflow: "hidden" }}>
           <img
             src={POINT_RETAIL_SRC}
             alt="Sistema de punto de venta en comercio — foto Unsplash"
@@ -289,7 +289,7 @@ function PainPointsSection() {
           {painPoints.map((p, i) => {
             const Icon = p.icon;
             return (
-              <div key={i} style={{ background: "#ffffff", border: "1.5px solid rgba(15,23,42,0.08)", borderRadius: 20, padding: isMobile ? 28 : 36 }}>
+              <div key={i} className="po-card po-card--interactive" style={{ borderRadius: 20, padding: isMobile ? 28 : 36 }}>
                 <div style={{ width: 52, height: 52, borderRadius: 14, background: p.bg, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
                   <Icon size={26} color={p.color} />
                 </div>
@@ -358,7 +358,7 @@ const pointFeatures: {
 function FeaturesSection() {
   const isMobile = useIsMobile();
   return (
-    <section id="funcionalidades" style={{ background: "#f8fafc", padding: isMobile ? "64px 20px" : "96px 24px" }}>
+    <section id="funcionalidades" className="po-section-surface--alt" style={{ padding: isMobile ? "64px 20px" : "96px 24px" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <span style={{ fontFamily: F, fontSize: 12, fontWeight: 700, color: "#1d4ed8", letterSpacing: "0.1em", textTransform: "uppercase", display: "block", marginBottom: 10 }}>
@@ -376,7 +376,7 @@ function FeaturesSection() {
           {pointFeatures.map((feat) => {
             const Icon = feat.icon;
             return (
-              <div key={feat.id} style={{ background: "#ffffff", border: "1.5px solid rgba(15,23,42,0.08)", borderRadius: 20, padding: isMobile ? 24 : 28, display: "flex", flexDirection: "column" }}>
+              <div key={feat.id} className="po-card po-card--interactive" style={{ borderRadius: 20, padding: isMobile ? 24 : 28, display: "flex", flexDirection: "column" }}>
                 <div style={{ width: 48, height: 48, borderRadius: 13, background: feat.bg, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
                   <Icon size={24} color={feat.color} />
                 </div>
@@ -448,11 +448,8 @@ function PuestoCard({ combo }: { combo: typeof puestos[0] }) {
   const hl = combo.highlight;
 
   return (
-    <div style={{
-      background: hl ? "#1d4ed8" : "#ffffff",
-      border: hl ? "none" : "1.5px solid rgba(15,23,42,0.08)",
+    <div className={hl ? "po-card po-card--highlight" : "po-card po-card--interactive"} style={{
       borderRadius: 22, padding: isMobile ? 24 : 30, position: "relative",
-      boxShadow: hl ? "0 20px 56px rgba(29,78,216,0.38)" : "none",
       display: "flex", flexDirection: "column",
     }}>
       {combo.badge && (
@@ -483,7 +480,7 @@ function PuestoCard({ combo }: { combo: typeof puestos[0] }) {
       )}
 
       {/* Precio */}
-      <div style={{ marginBottom: 16, padding: "13px 15px", borderRadius: 13, background: hl ? "rgba(255,255,255,0.12)" : "#f8fafc", border: hl ? "1px solid rgba(255,255,255,0.2)" : "1px solid #e2e8f0" }}>
+      <div style={{ marginBottom: 16, padding: "13px 15px", borderRadius: 13, background: hl ? "rgba(255,255,255,0.12)" : "#f1f5f9", border: hl ? "1px solid rgba(255,255,255,0.2)" : "1px solid #cbd5e1" }}>
         <p style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color: hl ? "rgba(255,255,255,0.45)" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 2px 0" }}>Efectivo / Transferencia</p>
         <p style={{ fontFamily: FD, fontSize: 26, fontWeight: 800, color: hl ? "#fff" : "#0f172a", margin: "0 0 6px 0", letterSpacing: "-0.5px" }}>{dispEfe}</p>
         <div style={{ height: 1, background: hl ? "rgba(255,255,255,0.15)" : "#e2e8f0", margin: "6px 0" }} />
@@ -514,7 +511,7 @@ function PuestoCard({ combo }: { combo: typeof puestos[0] }) {
 function SoftwareCard() {
   const isMobile = useIsMobile();
   return (
-    <div style={{ background: "#1e3a5f", borderRadius: 22, padding: isMobile ? 28 : 36, boxShadow: "0 12px 48px rgba(30,58,95,0.25)", display: "flex", flexDirection: "column", maxWidth: isMobile ? "100%" : 520, margin: "0 auto" }}>
+    <div className="po-card po-card--dark" style={{ borderRadius: 22, padding: isMobile ? 28 : 36, display: "flex", flexDirection: "column", maxWidth: isMobile ? "100%" : 520, margin: "0 auto" }}>
       <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(96,165,250,0.15)", borderRadius: 100, padding: "5px 14px", marginBottom: 18, width: "fit-content" }}>
         <Zap size={12} color="#60a5fa" />
         <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color: "#60a5fa", letterSpacing: "0.08em", textTransform: "uppercase" }}>Solo Software</span>
@@ -557,7 +554,7 @@ function CombosSection() {
   const [mode, setMode] = useState<"software" | "hardware">("hardware");
 
   return (
-    <section id="combos" style={{ background: "#f8fafc", padding: isMobile ? "64px 20px" : "96px 24px" }}>
+    <section id="combos" className="po-section-surface" style={{ padding: isMobile ? "64px 20px" : "96px 24px" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 44 }}>
@@ -568,7 +565,7 @@ function CombosSection() {
           <p style={{ fontFamily: F, fontSize: 15, color: "#64748b", margin: "0 0 32px 0" }}>Sin pedido de cotización. Precios claros, decisión rápida.</p>
 
           {/* Toggle */}
-          <div style={{ display: "inline-flex", background: "#e2e8f0", borderRadius: 14, padding: 4, gap: 4, flexWrap: isMobile ? "wrap" : "nowrap", justifyContent: "center" }}>
+          <div style={{ display: "inline-flex", background: "#e2e8f0", borderRadius: 14, padding: 4, gap: 4, flexWrap: isMobile ? "wrap" : "nowrap", justifyContent: "center", border: "1px solid #cbd5e1", boxShadow: "0 2px 8px rgba(15,23,42,0.06)" }}>
             {(["software", "hardware"] as const).map(opt => (
               <button key={opt} onClick={() => setMode(opt)} style={{
                 fontFamily: F, fontSize: isMobile ? 13 : 15, fontWeight: 700,
@@ -627,7 +624,7 @@ function TrustSection() {
           ].map((item, i) => {
             const Icon = item.icon;
             return (
-              <div key={i} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: isMobile ? 20 : 26, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <div key={i} className="po-card--on-dark" style={{ borderRadius: 16, padding: isMobile ? 20 : 26, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <div style={{ width: 52, height: 52, borderRadius: "50%", background: "rgba(96,165,250,0.15)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
                   <Icon size={26} color="#60a5fa" />
                 </div>
@@ -646,8 +643,8 @@ function TrustSection() {
 function CtaSection() {
   const isMobile = useIsMobile();
   return (
-    <section style={{ background: "#f8fafc", padding: isMobile ? "64px 20px" : "96px 24px" }}>
-      <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
+    <section className="po-section-surface--cta" style={{ padding: isMobile ? "64px 20px" : "96px 24px" }}>
+      <div className="po-card po-card--elevated" style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", borderRadius: 24, padding: isMobile ? "40px 24px" : "52px 48px" }}>
         <h2 style={{ fontFamily: FD, fontSize: isMobile ? "clamp(26px,7vw,40px)" : "clamp(28px,4vw,46px)", fontWeight: 800, color: "#0f172a", letterSpacing: "-0.5px", lineHeight: 1.2, marginBottom: 16 }}>
           Tu local, listo en{" "}<span style={{ color: "#1d4ed8" }}>24 horas</span>
         </h2>

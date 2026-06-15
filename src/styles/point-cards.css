@@ -1,0 +1,80 @@
+/* Point Once — light theme card surfaces (readable on white/gray sections) */
+
+.po-card {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 4px 20px rgba(15, 23, 42, 0.09);
+}
+
+.po-card--elevated {
+  border-color: #94a3b8;
+  box-shadow:
+    0 2px 4px rgba(15, 23, 42, 0.06),
+    0 12px 40px rgba(15, 23, 42, 0.14);
+}
+
+.po-card--interactive {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.po-card--interactive:hover {
+  border-color: #94a3b8;
+  box-shadow:
+    0 4px 8px rgba(15, 23, 42, 0.08),
+    0 16px 48px rgba(15, 23, 42, 0.16);
+  transform: translateY(-2px);
+}
+
+.po-card-chip {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.po-card-inner {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+.po-card--highlight {
+  background-color: #1d4ed8;
+  border: none;
+  box-shadow:
+    0 4px 12px rgba(29, 78, 216, 0.25),
+    0 20px 56px rgba(29, 78, 216, 0.38);
+}
+
+.po-card--dark {
+  background-color: #1e3a5f;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  box-shadow: 0 12px 48px rgba(30, 58, 95, 0.3);
+}
+
+.po-card--on-dark {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.po-section-surface {
+  background: #f1f5f9;
+}
+
+.po-section-surface--alt {
+  background: #ffffff;
+}
+
+.po-section-surface--cta {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.po-media-frame {
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
+}
