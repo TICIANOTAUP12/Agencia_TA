@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+import { renderSeoHeadHtml } from './src/lib/seo'
 
 
 function figmaAssetResolver() {
@@ -16,10 +17,20 @@ function figmaAssetResolver() {
   }
 }
 
+function seoInjectPlugin(): Plugin {
+  return {
+    name: 'seo-inject',
+    transformIndexHtml(html) {
+      return html.replace('<!-- SEO_HEAD -->', renderSeoHeadHtml())
+    },
+  }
+}
+
 export default defineConfig({
   base: '/point/',
   plugins: [
     figmaAssetResolver(),
+    seoInjectPlugin(),
     // The React and Tailwind plugins are both required for Make, even if
     // Tailwind is not being actively used – do not remove them
     react(),
