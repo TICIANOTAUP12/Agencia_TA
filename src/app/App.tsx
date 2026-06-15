@@ -1,7 +1,67 @@
 import { useState, useEffect } from "react";
-import { CheckCircle, TrendingUp, Zap, ShieldCheck, MessageCircle, ArrowRight, Monitor, Scan, Cpu, DollarSign, Package, ChevronDown, Star } from "lucide-react";
+import { BrowserRouter, Link, Route, Routes } from "react-router";
+import { CheckCircle, TrendingUp, Zap, ShieldCheck, MessageCircle, ArrowRight, Monitor, Scan, Cpu, DollarSign, Package, ChevronDown, Star, Store, FileSpreadsheet, ClipboardList } from "lucide-react";
+import { trackEvent } from "../lib/analytics";
+import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
+import {
+  AGENCIA_LOCATION,
+  AGENCIA_NAME,
+  featureMessage,
+  type PointOnceFeatureId,
+  WhatsAppMessages,
+  whatsappUrl,
+} from "../lib/whatsapp";
 
 /* MARKER-MAKE-KIT-INVOKED */
+
+const DEMO_URL = "https://humid-lace-69900289.figma.site";
+const POINT_LOGO_SRC = `${import.meta.env.BASE_URL}point-logo.png`;
+const AGENCIA_LOGO_SRC = `${import.meta.env.BASE_URL}agencia-logo.png`;
+const DEMO_ICON_SRC = `${import.meta.env.BASE_URL}demo-icon.png`;
+
+function openDemo(): void {
+  trackEvent("demo_click", { product: "point_once", source: "landing" });
+}
+
+function DemoIcon({ size = 16 }: { size?: number }) {
+  return (
+    <img
+      src={DEMO_ICON_SRC}
+      alt=""
+      width={size}
+      height={size}
+      aria-hidden
+      style={{ display: "block", objectFit: "contain", flexShrink: 0 }}
+    />
+  );
+}
+
+function BrandLogo({ iconSize = 36, light = false }: { iconSize?: number; light?: boolean }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <img
+        src={POINT_LOGO_SRC}
+        alt="Point Once"
+        width={iconSize}
+        height={iconSize}
+        style={{ display: "block", objectFit: "contain", flexShrink: 0, background: "transparent" }}
+      />
+      <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+        <span style={{ fontFamily: FD, fontSize: iconSize > 32 ? 26 : 20, fontWeight: 800, color: light ? "#fff" : "#0f172a", letterSpacing: "-0.5px", lineHeight: 1.1 }}>Point Once</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+          <img
+            src={AGENCIA_LOGO_SRC}
+            alt={AGENCIA_NAME}
+            width={14}
+            height={14}
+            style={{ display: "block", objectFit: "contain", flexShrink: 0, background: "transparent" }}
+          />
+          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, color: light ? "#60a5fa" : "#1e3a5f", letterSpacing: "0.14em", textTransform: "uppercase" }}>by {AGENCIA_NAME}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -38,21 +98,22 @@ function Header() {
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
         {/* Logo */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <span style={{ fontFamily: FD, fontSize: isMobile ? 22 : 26, fontWeight: 800, color: "#0f172a", letterSpacing: "-0.5px", lineHeight: 1.1 }}>Point Once</span>
-          <span style={{ fontFamily: F, fontSize: 9, fontWeight: 700, color: "#1e3a5f", letterSpacing: "0.14em", textTransform: "uppercase" }}>by TA Agencia</span>
-        </div>
+        <BrandLogo iconSize={isMobile ? 32 : 36} />
 
         {/* Desktop nav */}
         {!isMobile && (
           <nav style={{ display: "flex", alignItems: "center", gap: 28 }}>
-            {["#combos:Combos", "#garantia:Garantía"].map(item => {
+            {["#funcionalidades:Funcionalidades", "#combos:Combos", "#garantia:Garantía"].map(item => {
               const [href, label] = item.split(":");
               return (
                 <a key={href} href={href} style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: "#475569", textDecoration: "none" }}>{label}</a>
               );
             })}
-            <a href="https://wa.me/542646281854?text=Hola!%20Quiero%20info%20sobre%20Point%20Once" target="_blank" rel="noopener noreferrer"
+            <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" onClick={openDemo}
+              style={{ fontFamily: F, fontSize: 14, fontWeight: 700, color: "#1d4ed8", background: "#eff6ff", padding: "9px 18px", borderRadius: 9, textDecoration: "none", border: "1.5px solid #bfdbfe", display: "inline-flex", alignItems: "center", gap: 6 }}>
+              <DemoIcon size={14} /> Probar demo
+            </a>
+            <a href={whatsappUrl(WhatsAppMessages.header)} target="_blank" rel="noopener noreferrer"
               style={{ fontFamily: F, fontSize: 14, fontWeight: 700, color: "#fff", background: "#1d4ed8", padding: "9px 20px", borderRadius: 9, textDecoration: "none" }}>
               Consultar ahora
             </a>
@@ -76,7 +137,7 @@ function Header() {
       {/* Mobile menu */}
       {isMobile && menuOpen && (
         <div style={{ padding: "16px 20px 24px", borderTop: "1px solid rgba(15,23,42,0.06)", display: "flex", flexDirection: "column", gap: 12 }}>
-          {["#combos:Combos", "#garantia:Garantía"].map(item => {
+          {["#funcionalidades:Funcionalidades", "#combos:Combos", "#garantia:Garantía"].map(item => {
             const [href, label] = item.split(":");
             return (
               <a key={href} href={href} onClick={() => setMenuOpen(false)}
@@ -85,7 +146,12 @@ function Header() {
               </a>
             );
           })}
-          <a href="https://wa.me/542646281854?text=Hola!%20Quiero%20info%20sobre%20Point%20Once" target="_blank" rel="noopener noreferrer"
+          <a href={DEMO_URL} target="_blank" rel="noopener noreferrer"
+            onClick={() => { openDemo(); setMenuOpen(false); }}
+            style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: "#1d4ed8", background: "#eff6ff", padding: "14px 20px", borderRadius: 12, textDecoration: "none", textAlign: "center", border: "1.5px solid #bfdbfe", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+            <DemoIcon size={16} /> Probar demo
+          </a>
+          <a href={whatsappUrl(WhatsAppMessages.header)} target="_blank" rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
             style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: "#fff", background: "#1d4ed8", padding: "14px 20px", borderRadius: 12, textDecoration: "none", textAlign: "center", marginTop: 4 }}>
             Consultar ahora
@@ -127,9 +193,17 @@ function HeroSection() {
           </h1>
           <p style={{ fontFamily: F, fontSize: isMobile ? 16 : 18, color: "#475569", lineHeight: 1.7, marginBottom: 32, maxWidth: 500 }}>
             Point Once es el sistema de caja y control de stock más rápido del mercado. Desarrollado y respaldado por la ingeniería de{" "}
-            <strong style={{ color: "#1e3a5f" }}>TA Agencia</strong>.
+            <strong style={{ color: "#1e3a5f" }}>{AGENCIA_NAME}</strong>.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" onClick={openDemo} style={{
+              fontFamily: F, fontSize: 15, fontWeight: 700, color: "#fff", background: "#0f172a",
+              padding: "14px 28px", borderRadius: 12, textDecoration: "none",
+              display: "inline-flex", alignItems: "center", gap: 8,
+              boxShadow: "0 4px 24px rgba(15,23,42,0.2)",
+            }}>
+              <DemoIcon size={16} /> Probar demo
+            </a>
             <a href="#combos" style={{
               fontFamily: F, fontSize: 15, fontWeight: 700, color: "#fff", background: "#1d4ed8",
               padding: "14px 28px", borderRadius: 12, textDecoration: "none",
@@ -236,6 +310,98 @@ function PainPointsSection() {
   );
 }
 
+// ── Funcionalidades ───────────────────────────────────────────────────────────
+const pointFeatures: {
+  id: PointOnceFeatureId;
+  icon: typeof Store;
+  title: string;
+  desc: string;
+  color: string;
+  bg: string;
+}[] = [
+  {
+    id: "precio",
+    icon: DollarSign,
+    title: "Precios y combos",
+    desc: "Consultá precios actualizados de licencias, combos con hardware y opciones de financiación sin sorpresas.",
+    color: "#1d4ed8",
+    bg: "#eff6ff",
+  },
+  {
+    id: "locales",
+    icon: Store,
+    title: "Multi Locales",
+    desc: "Administrá varias sucursales o puntos de venta desde un solo sistema, con stock y ventas centralizados.",
+    color: "#7c3aed",
+    bg: "#f5f3ff",
+  },
+  {
+    id: "caucion",
+    icon: ShieldCheck,
+    title: "Gestión de Caución",
+    desc: "Controlá depósitos y garantías de envases retornables o productos con caución, integrado a la caja.",
+    color: "#059669",
+    bg: "#ecfdf5",
+  },
+  {
+    id: "excelCentral",
+    icon: FileSpreadsheet,
+    title: "Datos para Excel Central",
+    desc: "Exportá reportes consolidados a Excel desde la administración central de todos tus locales.",
+    color: "#d97706",
+    bg: "#fffbeb",
+  },
+  {
+    id: "demandaEstado",
+    icon: ClipboardList,
+    title: "Demanda de Estado",
+    desc: "Consultá y solicitá el estado de pedidos, transferencias y movimientos entre sucursales en tiempo real.",
+    color: "#dc2626",
+    bg: "#fef2f2",
+  },
+];
+
+function FeaturesSection() {
+  const isMobile = useIsMobile();
+  return (
+    <section id="funcionalidades" style={{ background: "#f8fafc", padding: isMobile ? "64px 20px" : "96px 24px" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <span style={{ fontFamily: F, fontSize: 12, fontWeight: 700, color: "#1d4ed8", letterSpacing: "0.1em", textTransform: "uppercase", display: "block", marginBottom: 10 }}>
+            Módulos del sistema
+          </span>
+          <h2 style={{ fontFamily: FD, fontSize: isMobile ? "clamp(24px,7vw,36px)" : "clamp(28px,4vw,42px)", fontWeight: 800, color: "#0f172a", letterSpacing: "-0.5px", lineHeight: 1.2, margin: "0 0 12px 0" }}>
+            Todo lo que Point Once{" "}
+            <span style={{ color: "#1d4ed8" }}>puede hacer por vos</span>
+          </h2>
+          <p style={{ fontFamily: F, fontSize: 15, color: "#64748b", margin: 0 }}>
+            Consultá por WhatsApp sobre cualquier módulo. Te responde el equipo de {AGENCIA_NAME}.
+          </p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
+          {pointFeatures.map((feat) => {
+            const Icon = feat.icon;
+            return (
+              <div key={feat.id} style={{ background: "#ffffff", border: "1.5px solid rgba(15,23,42,0.08)", borderRadius: 20, padding: isMobile ? 24 : 28, display: "flex", flexDirection: "column" }}>
+                <div style={{ width: 48, height: 48, borderRadius: 13, background: feat.bg, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+                  <Icon size={24} color={feat.color} />
+                </div>
+                <h3 style={{ fontFamily: FD, fontSize: 18, fontWeight: 700, color: "#0f172a", margin: "0 0 8px 0" }}>{feat.title}</h3>
+                <p style={{ fontFamily: F, fontSize: 14, color: "#475569", lineHeight: 1.65, margin: "0 0 18px 0", flexGrow: 1 }}>{feat.desc}</p>
+                <a href={whatsappUrl(featureMessage(feat.id))} target="_blank" rel="noopener noreferrer"
+                  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "11px 0", borderRadius: 10, fontFamily: F, fontSize: 13, fontWeight: 700, textDecoration: "none", background: "#eff6ff", color: "#1d4ed8", border: "1.5px solid #bfdbfe" }}>
+                  <MessageCircle size={14} />
+                  Consultar por WhatsApp
+                </a>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── Combos ────────────────────────────────────────────────────────────────────
 const puestos = [
   {
@@ -282,8 +448,8 @@ function PuestoCard({ combo }: { combo: typeof puestos[0] }) {
   const dispEfe = combo.hasCantidad ? fmt(CYMAX_UNIT_EFE * qty) : combo.priceEfectivo;
   const dispCuo = combo.hasCantidad ? `6 cuotas de ${fmt(CYMAX_UNIT_CUO * qty)}` : combo.cuotas;
   const waMsg = combo.hasCantidad
-    ? `Hola! Me interesan ${qty} Puesto(s) Cymax - Total: ${dispEfe}`
-    : `Hola! Me interesa el ${combo.name} - ${combo.priceEfectivo}`;
+    ? WhatsAppMessages.comboQuantity(qty, dispEfe)
+    : WhatsAppMessages.combo(combo.name, combo.priceEfectivo);
 
   const hl = combo.highlight;
 
@@ -342,7 +508,7 @@ function PuestoCard({ combo }: { combo: typeof puestos[0] }) {
         ))}
       </ul>
 
-      <a href={`https://wa.me/542646281854?text=${encodeURIComponent(waMsg)}`} target="_blank" rel="noopener noreferrer"
+      <a href={whatsappUrl(waMsg)} target="_blank" rel="noopener noreferrer"
         style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "13px 0", borderRadius: 11, fontFamily: F, fontSize: 14, fontWeight: 700, textDecoration: "none", background: hl ? "#fff" : "#1d4ed8", color: hl ? "#1d4ed8" : "#fff" }}>
         <MessageCircle size={14} />
         {combo.hasCantidad && qty > 1 ? `Quiero ${qty} puestos` : "Quiero este puesto"}
@@ -383,7 +549,7 @@ function SoftwareCard() {
         </p>
       </div>
 
-      <a href="https://wa.me/542646281854?text=Hola!%20Quiero%20la%20licencia%20de%20Point%20Once%20(ya%20tengo%20mi%20equipo)" target="_blank" rel="noopener noreferrer"
+      <a href={whatsappUrl(WhatsAppMessages.license)} target="_blank" rel="noopener noreferrer"
         style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "14px 0", borderRadius: 11, fontFamily: F, fontSize: 15, fontWeight: 700, textDecoration: "none", background: "#1d4ed8", color: "#fff" }}>
         <MessageCircle size={15} />
         Consultar precio de licencia
@@ -454,7 +620,7 @@ function TrustSection() {
               ¿Por qué Point Once nunca te va a dejar tirado?
             </h2>
             <p style={{ fontFamily: F, fontSize: isMobile ? 15 : 17, color: "rgba(255,255,255,0.72)", lineHeight: 1.8, margin: "0 auto", maxWidth: 640 }}>
-              A diferencia de otros sistemas que se cuelgan o pierden tus datos, Point Once está construido con la misma infraestructura robusta que usamos en <strong style={{ color: "#60a5fa" }}>TA Agencia</strong> para empresas industriales. Servidores seguros, soporte real y conexión nativa con AFIP.
+              A diferencia de otros sistemas que se cuelgan o pierden tus datos, Point Once está construido con la misma infraestructura robusta que usamos en <strong style={{ color: "#60a5fa" }}>{AGENCIA_NAME}</strong> para empresas industriales. Servidores seguros, soporte real y conexión nativa con AFIP.
             </p>
           </div>
         </div>
@@ -494,11 +660,18 @@ function CtaSection() {
         <p style={{ fontFamily: F, fontSize: isMobile ? 15 : 17, color: "#64748b", lineHeight: 1.7, marginBottom: 32 }}>
           Matías tiene el stock listo. Escribile hoy y elegí tu combo.
         </p>
-        <a href="https://wa.me/542646281854?text=Hola!%20Quiero%20mi%20Point%20Once" target="_blank" rel="noopener noreferrer"
-          style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: isMobile ? 16 : 18, fontWeight: 700, color: "#fff", background: "#1d4ed8", padding: isMobile ? "14px 28px" : "17px 40px", borderRadius: 14, textDecoration: "none", boxShadow: "0 8px 32px rgba(29,78,216,0.35)" }}>
-          <MessageCircle size={20} />
-          Quiero mi Point Once
-        </a>
+        <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 12, justifyContent: "center", alignItems: "center", flexWrap: "wrap", marginBottom: 8 }}>
+          <a href={whatsappUrl(WhatsAppMessages.cta)} target="_blank" rel="noopener noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: isMobile ? 16 : 18, fontWeight: 700, color: "#fff", background: "#1d4ed8", padding: isMobile ? "14px 28px" : "17px 40px", borderRadius: 14, textDecoration: "none", boxShadow: "0 8px 32px rgba(29,78,216,0.35)" }}>
+            <MessageCircle size={20} />
+            Quiero mi Point Once
+          </a>
+          <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" onClick={openDemo}
+            style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: isMobile ? 16 : 18, fontWeight: 700, color: "#1d4ed8", background: "#fff", padding: isMobile ? "14px 28px" : "17px 40px", borderRadius: 14, textDecoration: "none", border: "2px solid #bfdbfe" }}>
+            <DemoIcon size={20} />
+            Probar demo
+          </a>
+        </div>
         <p style={{ fontFamily: F, fontSize: 12, color: "#94a3b8", marginTop: 16 }}>Consulta sin compromiso · Respuesta inmediata</p>
       </div>
     </section>
@@ -511,13 +684,18 @@ function Footer() {
   return (
     <footer style={{ background: "#0f172a", padding: "36px 20px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between", flexDirection: isMobile ? "column" : "row", gap: 16 }}>
-        <div>
-          <span style={{ fontFamily: FD, fontSize: 20, fontWeight: 800, color: "#fff", display: "block" }}>Point Once</span>
-          <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color: "#60a5fa", letterSpacing: "0.12em", textTransform: "uppercase" }}>by TA Agencia</span>
+        <BrandLogo iconSize={32} light />
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: isMobile ? "flex-start" : "flex-end" }}>
+          <Link
+            to="/politica-de-privacidad"
+            style={{ fontFamily: F, fontSize: 12, color: "#64748b", textDecoration: "none" }}
+          >
+            Política de Privacidad
+          </Link>
+          <p style={{ fontFamily: F, fontSize: 12, color: "#475569", margin: 0 }}>
+            © 2025 {AGENCIA_NAME}. Sistema de caja para comercios — {AGENCIA_LOCATION}.
+          </p>
         </div>
-        <p style={{ fontFamily: F, fontSize: 12, color: "#475569", margin: 0 }}>
-          © 2025 TA Agencia. Sistema de caja para comercios — Argentina.
-        </p>
       </div>
     </footer>
   );
@@ -527,7 +705,7 @@ function Footer() {
 function WhatsAppButton() {
   const isMobile = useIsMobile();
   return (
-    <a href="https://wa.me/542646281854?text=Hola!%20Consulto%20stock%20de%20equipos%20Point%20Once" target="_blank" rel="noopener noreferrer"
+    <a href={whatsappUrl(WhatsAppMessages.stock)} target="_blank" rel="noopener noreferrer"
       style={{
         position: "fixed", bottom: isMobile ? 16 : 24, right: isMobile ? 16 : 24, zIndex: 100,
         display: "flex", alignItems: "center", gap: isMobile ? 0 : 10,
@@ -547,7 +725,9 @@ function WhatsAppButton() {
 }
 
 // ── App ───────────────────────────────────────────────────────────────────────
-export default function App() {
+const routerBasename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
+
+function PointOnceLanding() {
   return (
     <div style={{ fontFamily: F }}>
       <style>{`
@@ -562,11 +742,23 @@ export default function App() {
       <Header />
       <HeroSection />
       <PainPointsSection />
+      <FeaturesSection />
       <CombosSection />
       <TrustSection />
       <CtaSection />
       <Footer />
       <WhatsAppButton />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter basename={routerBasename}>
+      <Routes>
+        <Route path="/" element={<PointOnceLanding />} />
+        <Route path="/politica-de-privacidad" element={<PrivacyPolicyPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

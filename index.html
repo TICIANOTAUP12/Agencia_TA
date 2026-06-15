@@ -1,22 +1,106 @@
 
   <!DOCTYPE html>
-  <html lang="en">
+  <html lang="es-AR">
     <head>
-      
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Landing Page Design</title>
-      <meta name="description" content="Streamline retail operations with a fast, reliable point-of-sale and inventory management system designed for minimarket owners, ensuring accuracy and efficiency." />
-      <meta name="robots" content="noindex, nofollow" />
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        var gtagBase = gtag;
+        window.gtag = function() {
+          if (arguments[0] === 'consent' && arguments[1] === 'update') {
+            window.__consentLastUpdate = { ts: Date.now(), state: arguments[2] };
+          }
+          return gtagBase.apply(null, arguments);
+        };
+
+        // EEE/UK/CH: denied until Cookie Script calls consent update after banner choice
+        gtag('consent', 'default', {
+          'analytics_storage': 'denied',
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'wait_for_update': 2000,
+          'region': ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','CH','GB','UK']
+        });
+
+        // Rest of world (incl. AR): analytics granted by default; ads denied until accept
+        gtag('consent', 'default', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'wait_for_update': 2000
+        });
+
+        gtag('set', 'ads_data_redaction', true);
+        gtag('set', 'developer_id.dMmY1Mm', true);
+      </script>
+      <script type="text/javascript" charset="UTF-8" src="//cdn.cookie-script.com/s/8054c96c3195dbda92deb122e915d9e9.js"></script>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-7BNVXG0TV0"></script>
+      <script>
+        gtag('js', new Date());
+        gtag('config', 'G-7BNVXG0TV0', {
+          send_page_view: true,
+          page_path: window.location.pathname + window.location.search
+        });
+      </script>
+      <title>Point Once | Punto de Venta y Caja para Kioscos y Comercios</title>
+      <meta name="description" content="Point Once: sistema de caja, stock y facturación AFIP para kioscos, almacenes y comercios. Hardware + software, instalación y soporte por Agencia TA. San Juan, Argentina." />
+      <meta name="keywords" content="punto de venta, sistema de caja, kiosco, comercio, stock, AFIP, Point Once, Agencia TA, San Juan, Argentina" />
+      <meta name="author" content="Agencia TA" />
+      <meta name="robots" content="index, follow" />
+      <link rel="canonical" href="https://sistemataup.online/point/" />
+
+      <meta property="og:type" content="website" />
+      <meta property="og:locale" content="es_AR" />
+      <meta property="og:site_name" content="Point Once by Agencia TA" />
+      <meta property="og:title" content="Point Once | Punto de Venta para Kioscos y Comercios" />
+      <meta property="og:description" content="Facturá en 24 horas con caja, control de stock y equipos para kioscos. Soporte real en San Juan, Argentina." />
+      <meta property="og:url" content="https://sistemataup.online/point/" />
+      <meta property="og:image" content="https://sistemataup.online/point/point-logo.png" />
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content="Point Once | Punto de Venta para Kioscos" />
+      <meta name="twitter:description" content="Sistema de caja y stock para comercios. Combos con hardware, AFIP y soporte Agencia TA." />
+      <meta name="twitter:image" content="https://sistemataup.online/point/point-logo.png" />
+
+      <link rel="icon" type="image/png" href="point-logo.png" />
+      <link rel="apple-touch-icon" href="point-logo.png" />
       <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
-      
+
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Point Once",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web, Windows",
+        "description": "Sistema de punto de venta y control de stock para kioscos y comercios en Argentina, con integración AFIP.",
+        "url": "https://sistemataup.online/point/",
+        "provider": {
+          "@type": "Organization",
+          "name": "Agencia TA",
+          "url": "https://sistemataup.online/",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "San Juan",
+            "addressCountry": "AR"
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "ARS",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+      </script>
     </head>
 
     <body>
-      
       <div id="root"></div>
       <script type="module" src="/src/main.tsx"></script>
-      
     </body>
   </html>
-  

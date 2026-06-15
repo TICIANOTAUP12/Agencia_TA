@@ -5,6 +5,7 @@ node_modules/
 .env
 .env.local
 .env.*.local
+!.env.example
 
 # Build output
 dist/
@@ -28,3 +29,7 @@ Desktop.ini
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
+
+# Test / tooling
+coverage/
+*.tsbuildinfo
