@@ -17,23 +17,11 @@ import {
 const DEMO_URL = "https://humid-lace-69900289.figma.site";
 const POINT_LOGO_SRC = `${import.meta.env.BASE_URL}point-logo.png`;
 const AGENCIA_LOGO_SRC = `${import.meta.env.BASE_URL}agencia-logo.png`;
-const DEMO_ICON_SRC = `${import.meta.env.BASE_URL}demo-icon.png`;
+const POINT_HERO_SRC = `${import.meta.env.BASE_URL}point-hero.jpg`;
+const POINT_RETAIL_SRC = `${import.meta.env.BASE_URL}point-retail.jpg`;
 
 function openDemo(): void {
   trackEvent("demo_click", { product: "point_once", source: "landing" });
-}
-
-function DemoIcon({ size = 16 }: { size?: number }) {
-  return (
-    <img
-      src={DEMO_ICON_SRC}
-      alt=""
-      width={size}
-      height={size}
-      aria-hidden
-      style={{ display: "block", objectFit: "contain", flexShrink: 0 }}
-    />
-  );
 }
 
 function BrandLogo({ iconSize = 36, light = false }: { iconSize?: number; light?: boolean }) {
@@ -110,8 +98,8 @@ function Header() {
               );
             })}
             <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" onClick={openDemo}
-              style={{ fontFamily: F, fontSize: 14, fontWeight: 700, color: "#1d4ed8", background: "#eff6ff", padding: "9px 18px", borderRadius: 9, textDecoration: "none", border: "1.5px solid #bfdbfe", display: "inline-flex", alignItems: "center", gap: 6 }}>
-              <DemoIcon size={14} /> Probar demo
+              style={{ fontFamily: F, fontSize: 14, fontWeight: 700, color: "#1d4ed8", background: "#eff6ff", padding: "9px 18px", borderRadius: 9, textDecoration: "none", border: "1.5px solid #bfdbfe" }}>
+              Probar demo
             </a>
             <a href={whatsappUrl(WhatsAppMessages.header)} target="_blank" rel="noopener noreferrer"
               style={{ fontFamily: F, fontSize: 14, fontWeight: 700, color: "#fff", background: "#1d4ed8", padding: "9px 20px", borderRadius: 9, textDecoration: "none" }}>
@@ -148,8 +136,8 @@ function Header() {
           })}
           <a href={DEMO_URL} target="_blank" rel="noopener noreferrer"
             onClick={() => { openDemo(); setMenuOpen(false); }}
-            style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: "#1d4ed8", background: "#eff6ff", padding: "14px 20px", borderRadius: 12, textDecoration: "none", textAlign: "center", border: "1.5px solid #bfdbfe", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-            <DemoIcon size={16} /> Probar demo
+            style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: "#1d4ed8", background: "#eff6ff", padding: "14px 20px", borderRadius: 12, textDecoration: "none", textAlign: "center", border: "1.5px solid #bfdbfe" }}>
+            Probar demo
           </a>
           <a href={whatsappUrl(WhatsAppMessages.header)} target="_blank" rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
@@ -199,10 +187,9 @@ function HeroSection() {
             <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" onClick={openDemo} style={{
               fontFamily: F, fontSize: 15, fontWeight: 700, color: "#fff", background: "#0f172a",
               padding: "14px 28px", borderRadius: 12, textDecoration: "none",
-              display: "inline-flex", alignItems: "center", gap: 8,
               boxShadow: "0 4px 24px rgba(15,23,42,0.2)",
             }}>
-              <DemoIcon size={16} /> Probar demo
+              Probar demo
             </a>
             <a href="#combos" style={{
               fontFamily: F, fontSize: 15, fontWeight: 700, color: "#fff", background: "#1d4ed8",
@@ -237,34 +224,34 @@ function HeroSection() {
         </div>
 
         {/* Image card */}
-        {!isMobile && (
-          <div style={{ position: "relative" }}>
-            <div style={{ background: "#ffffff", borderRadius: 24, padding: 28, boxShadow: "0 24px 80px rgba(15,23,42,0.12)", position: "relative", overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: -40, right: -40, width: 180, height: 180, borderRadius: "50%", background: "#eff6ff" }} />
-              <div style={{
+        <div style={{ position: "relative" }}>
+          <div style={{ background: "#ffffff", borderRadius: 24, padding: isMobile ? 20 : 28, boxShadow: "0 24px 80px rgba(15,23,42,0.12)", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: -40, right: -40, width: 180, height: 180, borderRadius: "50%", background: "#eff6ff" }} />
+            <img
+              src={POINT_HERO_SRC}
+              alt="Terminales de caja con monitores en mostrador de comercio — foto Unsplash"
+              style={{
                 width: "100%", aspectRatio: "4/3", borderRadius: 14, position: "relative", zIndex: 1,
-                background: "linear-gradient(135deg, #dbeafe 0%, #eff6ff 50%, #f8fafc 100%)",
-                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
+                objectFit: "cover", display: "block",
                 border: "1px solid rgba(29,78,216,0.12)",
-              }}>
-                <Monitor size={48} color="#1d4ed8" strokeWidth={1.5} />
-                <span style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: "#1e3a5f" }}>Combo Point Once completo</span>
+              }}
+            />
+            <div style={{ marginTop: 16, padding: "14px 16px", background: "#f8fafc", borderRadius: 10, display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ width: 36, height: 36, borderRadius: 9, background: "#dbeafe", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <CheckCircle size={18} color="#1d4ed8" />
               </div>
-              <div style={{ marginTop: 16, padding: "14px 16px", background: "#f8fafc", borderRadius: 10, display: "flex", alignItems: "center", gap: 12 }}>
-                <div style={{ width: 36, height: 36, borderRadius: 9, background: "#dbeafe", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <CheckCircle size={18} color="#1d4ed8" />
-                </div>
-                <div>
-                  <p style={{ fontFamily: F, fontSize: 13, fontWeight: 700, color: "#0f172a", margin: 0 }}>Combo Point Full</p>
-                  <p style={{ fontFamily: F, fontSize: 12, color: "#64748b", margin: 0 }}>Sistema + Hardware + Soporte real</p>
-                </div>
+              <div>
+                <p style={{ fontFamily: F, fontSize: 13, fontWeight: 700, color: "#0f172a", margin: 0 }}>Combo Point Full</p>
+                <p style={{ fontFamily: F, fontSize: 12, color: "#64748b", margin: 0 }}>Sistema + Hardware + Soporte real</p>
               </div>
             </div>
+          </div>
+          {!isMobile && (
             <div style={{ position: "absolute", top: -14, right: -14, background: "#1d4ed8", color: "white", borderRadius: 100, padding: "7px 14px", fontFamily: F, fontSize: 11, fontWeight: 700, boxShadow: "0 4px 16px rgba(29,78,216,0.4)" }}>
               ✓ Stock disponible hoy
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </section>
   );
@@ -290,6 +277,13 @@ function PainPointsSection() {
             Los problemas que Point Once{" "}
             <span style={{ color: "#1d4ed8" }}>elimina de raíz</span>
           </h2>
+        </div>
+        <div style={{ marginBottom: 40, borderRadius: 20, overflow: "hidden", boxShadow: "0 12px 40px rgba(15,23,42,0.08)", border: "1px solid rgba(15,23,42,0.06)" }}>
+          <img
+            src={POINT_RETAIL_SRC}
+            alt="Sistema de punto de venta en comercio — foto Unsplash"
+            style={{ width: "100%", height: isMobile ? 200 : 280, objectFit: "cover", display: "block" }}
+          />
         </div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 20 }}>
           {painPoints.map((p, i) => {
@@ -667,8 +661,7 @@ function CtaSection() {
             Quiero mi Point Once
           </a>
           <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" onClick={openDemo}
-            style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: isMobile ? 16 : 18, fontWeight: 700, color: "#1d4ed8", background: "#fff", padding: isMobile ? "14px 28px" : "17px 40px", borderRadius: 14, textDecoration: "none", border: "2px solid #bfdbfe" }}>
-            <DemoIcon size={20} />
+            style={{ display: "inline-flex", alignItems: "center", fontFamily: F, fontSize: isMobile ? 16 : 18, fontWeight: 700, color: "#1d4ed8", background: "#fff", padding: isMobile ? "14px 28px" : "17px 40px", borderRadius: 14, textDecoration: "none", border: "2px solid #bfdbfe" }}>
             Probar demo
           </a>
         </div>
