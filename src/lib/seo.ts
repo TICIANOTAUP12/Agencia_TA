@@ -24,6 +24,9 @@ export type SeoConfig = {
     description: string;
     url: string;
     image: string;
+    imageWidth: number;
+    imageHeight: number;
+    imageAlt: string;
   };
   twitter: {
     card: string;
@@ -88,14 +91,18 @@ export const seoConfig: SeoConfig = {
     description:
       "Caja registradora y punto de venta para kioscos y supermercados. Combos hardware + software, facturación AFIP, multi locales, gestión de caución y soporte Agencia TA en San Juan, Argentina.",
     url: `${SITE_ORIGIN}/point/`,
-    image: `${SITE_ORIGIN}/point/point-logo.png`,
+    image: `${SITE_ORIGIN}/point/og-image.png`,
+    imageWidth: 1200,
+    imageHeight: 630,
+    imageAlt:
+      "Point Once — sistema de caja y POS para kioscos y supermercados, desarrollado por Agencia TA",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Point Once | Caja y POS para Kioscos y Supermercados",
     description:
       "Sistema de caja para kioscos, supermercados y retail. Stock, facturación AFIP, multi locales, caución, hardware Cymax e instalación con soporte local.",
-    image: `${SITE_ORIGIN}/point/point-logo.png`,
+    image: `${SITE_ORIGIN}/point/og-image.png`,
   },
   jsonLd: {
     "@context": "https://schema.org",
@@ -158,6 +165,9 @@ export function renderSeoHeadHtml(config: SeoConfig = seoConfig): string {
     `<meta property="og:description" content="${escapeHtml(config.og.description)}" />`,
     `<meta property="og:url" content="${escapeHtml(config.og.url)}" />`,
     `<meta property="og:image" content="${escapeHtml(config.og.image)}" />`,
+    `<meta property="og:image:width" content="${config.og.imageWidth}" />`,
+    `<meta property="og:image:height" content="${config.og.imageHeight}" />`,
+    `<meta property="og:image:alt" content="${escapeHtml(config.og.imageAlt)}" />`,
     "",
     `<meta name="twitter:card" content="${escapeHtml(config.twitter.card)}" />`,
     `<meta name="twitter:title" content="${escapeHtml(config.twitter.title)}" />`,
