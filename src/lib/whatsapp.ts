@@ -25,7 +25,7 @@ export const WhatsAppMessages = {
     `Hola, me interesan ${qty} Puesto(s) Cymax Completo — total estimado: ${total}. Quisiera confirmar disponibilidad y coordinar la entrega.`,
 
   license:
-    "Hola, ya tengo mi equipo y quisiera consultar el precio de la licencia de Point Once. ¿Podemos conversar sobre las opciones?",
+    "Hola, ya tengo mi equipo y quisiera consultar el precio de la licencia de Point Once. Mi PC cumple Windows 10/11, 8 GB RAM, SSD 256 GB e i3 10.ª gen. ¿Podemos instalar el mismo día?",
 
   pricing:
     "Hola, consulto desde la web de Point Once (Agencia TA, San Juan). Quisiera recibir información actualizada sobre precios, combos y opciones de financiación para mi comercio.",
@@ -46,7 +46,7 @@ export const WhatsAppMessages = {
     "Hola, quiero implementar Point Once en mi comercio. ¿Podemos coordinar para tenerlo funcionando lo antes posible?",
 
   stock:
-    "Hola, consulto disponibilidad de stock de equipos Point Once. ¿Qué combos tienen listos para entrega?",
+    "Hola, consulto plazos de entrega de equipos Point Once. Entiendo que se piden a proveedor y con seña la entrega suele ser en menos de una semana. ¿Qué combo me recomiendan?",
 } as const;
 
 export type PointOnceFeatureId =

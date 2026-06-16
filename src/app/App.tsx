@@ -4,6 +4,11 @@ import { CheckCircle, TrendingUp, Zap, ShieldCheck, MessageCircle, ArrowRight, M
 import { trackEvent } from "../lib/analytics";
 import { comboInquiryText, FEATURE_INTENT } from "../lib/coreApi";
 import {
+  HARDWARE_DELIVERY_NOTE,
+  LICENSE_SAME_DAY_NOTE,
+  SYSTEM_REQUIREMENTS,
+} from "../lib/pointOnceInfo";
+import {
   AGENCIA_LOCATION,
   AGENCIA_NAME,
   featureMessage,
@@ -258,7 +263,7 @@ function HeroSection() {
           </div>
           {!isMobile && (
             <div style={{ position: "absolute", top: -14, right: -14, background: "#1d4ed8", color: "white", borderRadius: 100, padding: "7px 14px", fontFamily: F, fontSize: 11, fontWeight: 700, boxShadow: "0 4px 16px rgba(29,78,216,0.4)" }}>
-              ✓ Stock disponible hoy
+              ✓ Entrega en menos de 1 semana
             </div>
           )}
         </div>
@@ -544,7 +549,14 @@ function SoftwareCard() {
       </div>
 
       <ul style={{ listStyle: "none", padding: 0, margin: "0 0 22px 0", display: "flex", flexDirection: "column", gap: 11 }}>
-        {["Software Point Once completo","Instalación remota o presencial","Actualizaciones incluidas","Conexión nativa con AFIP","Soporte vía WhatsApp","Sin hardware requerido"].map((item, i) => (
+        {[
+          "Software Point Once completo",
+          LICENSE_SAME_DAY_NOTE,
+          "Actualizaciones incluidas",
+          "Conexión nativa con AFIP",
+          "Soporte vía WhatsApp",
+          "Sin hardware requerido",
+        ].map((item, i) => (
           <li key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <CheckCircle size={14} color="#60a5fa" />
             <span style={{ fontFamily: F, fontSize: 14, color: "rgba(255,255,255,0.85)" }}>{item}</span>
@@ -553,6 +565,12 @@ function SoftwareCard() {
       </ul>
 
       <div style={{ padding: "13px 15px", borderRadius: 11, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)", marginBottom: 22 }}>
+        <p style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 6px 0" }}>
+          Requisitos mínimos recomendados
+        </p>
+        <p style={{ fontFamily: F, fontSize: 13, color: "rgba(255,255,255,0.75)", lineHeight: 1.7, margin: "0 0 8px 0" }}>
+          {SYSTEM_REQUIREMENTS}
+        </p>
         <p style={{ fontFamily: F, fontSize: 13, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: 0 }}>
           Ideal si ya tenés una PC en el local y solo necesitás el sistema de caja con soporte real.
         </p>
@@ -584,7 +602,9 @@ function CombosSection() {
           <h2 style={{ fontFamily: FD, fontSize: isMobile ? "clamp(24px,7vw,36px)" : "clamp(28px,4vw,42px)", fontWeight: 800, color: "#0f172a", letterSpacing: "-0.5px", lineHeight: 1.2, margin: "0 0 12px 0" }}>
             Elegí tu combo y empezá hoy
           </h2>
-          <p style={{ fontFamily: F, fontSize: 15, color: "#64748b", margin: "0 0 32px 0" }}>Sin pedido de cotización. Precios claros, decisión rápida.</p>
+          <p style={{ fontFamily: F, fontSize: 15, color: "#64748b", margin: "0 0 32px 0" }}>
+            Sin pedido de cotización. Precios claros. {HARDWARE_DELIVERY_NOTE}
+          </p>
 
           {/* Toggle */}
           <div style={{ display: "inline-flex", background: "#e2e8f0", borderRadius: 14, padding: 4, gap: 4, flexWrap: isMobile ? "wrap" : "nowrap", justifyContent: "center", border: "1px solid #cbd5e1", boxShadow: "0 2px 8px rgba(15,23,42,0.06)" }}>
@@ -671,7 +691,7 @@ function CtaSection() {
           Tu local, listo en{" "}<span style={{ color: "#1d4ed8" }}>24 horas</span>
         </h2>
         <p style={{ fontFamily: F, fontSize: isMobile ? 15 : 17, color: "#64748b", lineHeight: 1.7, marginBottom: 32 }}>
-          Matías tiene el stock listo. Escribile hoy y elegí tu combo.
+          Con seña arrancamos al toque: equipos en menos de una semana, licencia instalada el mismo día.
         </p>
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: 12, justifyContent: "center", alignItems: "center", flexWrap: "wrap", marginBottom: 8 }}>
           <WhatsAppLinkButton

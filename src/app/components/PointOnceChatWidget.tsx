@@ -20,7 +20,7 @@ interface ChatMessage {
 
 const QUICK_PROMPTS: { label: string; text: string }[] = [
   { label: "Ver precios", text: "cuánto cuestan los combos" },
-  { label: "Stock hoy", text: "tienen stock?" },
+  { label: "Plazos entrega", text: "tienen stock?" },
   { label: "2 Cymax", text: "quiero 2 cymax" },
   { label: "Licencia", text: "precio de la licencia" },
   { label: "Asesor", text: "quiero hablar con un asesor" },
