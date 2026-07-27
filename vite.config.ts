@@ -56,6 +56,7 @@ export default defineConfig({
   assetsInclude: ['**/*.svg', '**/*.csv'],
   preview: {
     host: '127.0.0.1',
-    allowedHosts: true,
+    // nginx proxies with Host: sistemataup.online — boolean true is unreliable on some Vite builds
+    allowedHosts: ['sistemataup.online', '.sistemataup.online', 'localhost', '127.0.0.1'],
   },
 })
