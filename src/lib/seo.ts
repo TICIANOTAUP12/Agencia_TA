@@ -58,7 +58,7 @@ export const seoKeywords: SeoKeywordGroups = {
     "caja registradora retail",
     "caja registradora almacén",
     "despensa",
-    "Point Once",
+    "Point Sales",
     "Cymax",
     "Agencia TA",
   ],
@@ -74,20 +74,20 @@ export const seoKeywords: SeoKeywordGroups = {
 
 export const seoConfig: SeoConfig = {
   channel: "point-once",
-  siteName: "Point Once by Agencia TA",
+  siteName: "Point Sales by Agencia TA",
   author: "Agencia TA",
-  title: "Point Once | Sistema de Caja para Kioscos, Supermercados y Comercios | Agencia TA",
+  title: "Point Sales | Sistema de Caja para Kioscos, Supermercados y Comercios | Agencia TA",
   description:
     "Software de caja y POS para kioscos, supermercados, almacenes y despensas. Control de stock, facturación AFIP, multi locales, gestión de caución, equipos Cymax e instalación con soporte en San Juan, Argentina.",
   keywords: seoKeywords,
   canonicalUrl: `${SITE_ORIGIN}/point/`,
   robots: "index, follow",
   locale: "es_AR",
-  favicon: "point-logo.png",
-  appleTouchIcon: "point-logo.png",
+  favicon: "logo-point-isotipo.svg",
+  appleTouchIcon: "logo-point-isotipo.svg",
   og: {
     type: "website",
-    title: "Point Once | Sistema de Caja para Kioscos, Supermercados y Comercios",
+    title: "Point Sales | Sistema de Caja para Kioscos, Supermercados y Comercios",
     description:
       "Caja registradora y punto de venta para kioscos y supermercados. Combos hardware + software, facturación AFIP, multi locales, gestión de caución y soporte Agencia TA en San Juan, Argentina.",
     url: `${SITE_ORIGIN}/point/`,
@@ -95,11 +95,11 @@ export const seoConfig: SeoConfig = {
     imageWidth: 1200,
     imageHeight: 630,
     imageAlt:
-      "Point Once — sistema de caja y POS para kioscos y supermercados, desarrollado por Agencia TA",
+      "Point Sales — sistema de caja y POS para kioscos y supermercados, desarrollado por Agencia TA",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Point Once | Caja y POS para Kioscos y Supermercados",
+    title: "Point Sales | Caja y POS para Kioscos y Supermercados",
     description:
       "Sistema de caja para kioscos, supermercados y retail. Stock, facturación AFIP, multi locales, caución, hardware Cymax e instalación con soporte local.",
     image: `${SITE_ORIGIN}/point/og-image.png`,
@@ -107,7 +107,7 @@ export const seoConfig: SeoConfig = {
   jsonLd: {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Point Once",
+    name: "Point Sales",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, Windows",
     description:

@@ -17,12 +17,13 @@ import {
 } from "../lib/whatsapp";
 import { WhatsAppLinkButton } from "./components/WhatsAppLinkButton";
 import { PointOnceChatWidget } from "./components/PointOnceChatWidget";
+import { ArgentinaCoverageMap } from "./components/ArgentinaCoverageMap";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 
 /* MARKER-MAKE-KIT-INVOKED */
 
 const DEMO_URL = "https://humid-lace-69900289.figma.site";
-const POINT_LOGO_SRC = `${import.meta.env.BASE_URL}point-logo.png`;
+const POINT_LOGO_ISOTIPO = `${import.meta.env.BASE_URL}logo-point-isotipo.svg`;
 const AGENCIA_LOGO_SRC = `${import.meta.env.BASE_URL}agencia-logo.png`;
 const POINT_HERO_SRC = `${import.meta.env.BASE_URL}point-hero.jpg`;
 const POINT_RETAIL_SRC = `${import.meta.env.BASE_URL}point-retail.jpg`;
@@ -35,14 +36,14 @@ function BrandLogo({ iconSize = 36, light = false }: { iconSize?: number; light?
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
       <img
-        src={POINT_LOGO_SRC}
-        alt="Point Once"
+        src={POINT_LOGO_ISOTIPO}
+        alt="Point Sales"
         width={iconSize}
         height={iconSize}
         style={{ display: "block", objectFit: "contain", flexShrink: 0, background: "transparent" }}
       />
       <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-        <span style={{ fontFamily: FD, fontSize: iconSize > 32 ? 26 : 20, fontWeight: 800, color: light ? "#fff" : "#0f172a", letterSpacing: "-0.5px", lineHeight: 1.1 }}>Point Once</span>
+        <span style={{ fontFamily: FD, fontSize: iconSize > 32 ? 26 : 20, fontWeight: 800, color: light ? "#fff" : "#0f172a", letterSpacing: "-0.5px", lineHeight: 1.1 }}>Point Sales</span>
         <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
           <img
             src={AGENCIA_LOGO_SRC}
@@ -98,7 +99,7 @@ function Header() {
         {/* Desktop nav */}
         {!isMobile && (
           <nav style={{ display: "flex", alignItems: "center", gap: 28 }}>
-            {["#funcionalidades:Funcionalidades", "#combos:Combos", "#garantia:Garantía"].map(item => {
+            {["#funcionalidades:Funcionalidades", "#combos:Combos", "#cobertura:Cobertura", "#garantia:Garantía"].map(item => {
               const [href, label] = item.split(":");
               return (
                 <a key={href} href={href} style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: "#475569", textDecoration: "none" }}>{label}</a>
@@ -136,7 +137,7 @@ function Header() {
       {/* Mobile menu */}
       {isMobile && menuOpen && (
         <div style={{ padding: "16px 20px 24px", borderTop: "1px solid rgba(15,23,42,0.06)", display: "flex", flexDirection: "column", gap: 12 }}>
-          {["#funcionalidades:Funcionalidades", "#combos:Combos", "#garantia:Garantía"].map(item => {
+          {["#funcionalidades:Funcionalidades", "#combos:Combos", "#cobertura:Cobertura", "#garantia:Garantía"].map(item => {
             const [href, label] = item.split(":");
             return (
               <a key={href} href={href} onClick={() => setMenuOpen(false)}
@@ -195,7 +196,7 @@ function HeroSection() {
             <span style={{ color: "#1e3a5f" }}>cero estrés.</span>
           </h1>
           <p style={{ fontFamily: F, fontSize: isMobile ? 16 : 18, color: "#475569", lineHeight: 1.7, marginBottom: 32, maxWidth: 500 }}>
-            Point Once es el sistema de caja y control de stock más rápido del mercado. Desarrollado y respaldado por la ingeniería de{" "}
+            Point Sales es el sistema de caja y control de stock más rápido del mercado. Desarrollado y respaldado por la ingeniería de{" "}
             <strong style={{ color: "#1e3a5f" }}>{AGENCIA_NAME}</strong>.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -289,7 +290,7 @@ function PainPointsSection() {
             Los 3 dolores del mostrador
           </span>
           <h2 style={{ fontFamily: FD, fontSize: isMobile ? "clamp(24px,7vw,36px)" : "clamp(28px,4vw,42px)", fontWeight: 800, color: "#0f172a", letterSpacing: "-0.5px", lineHeight: 1.2, margin: 0 }}>
-            Los problemas que Point Once{" "}
+            Los problemas que Point Sales{" "}
             <span style={{ color: "#1d4ed8" }}>elimina de raíz</span>
           </h2>
         </div>
@@ -380,7 +381,7 @@ function FeaturesSection() {
             Módulos del sistema
           </span>
           <h2 style={{ fontFamily: FD, fontSize: isMobile ? "clamp(24px,7vw,36px)" : "clamp(28px,4vw,42px)", fontWeight: 800, color: "#0f172a", letterSpacing: "-0.5px", lineHeight: 1.2, margin: "0 0 12px 0" }}>
-            Todo lo que Point Once{" "}
+            Todo lo que Point Sales{" "}
             <span style={{ color: "#1d4ed8" }}>puede hacer por vos</span>
           </h2>
           <p style={{ fontFamily: F, fontSize: 15, color: "#64748b", margin: 0 }}>
@@ -424,7 +425,7 @@ const puestos = [
     priceEfectivo: "$855.000",
     cuotas: "6 cuotas de $205.200",
     desc: "Solo la computadora. Sin impresora, lector ni gaveta.",
-    includes: ["All-In-One Cymax 24\"", "Sistema Point Once local", "Instalación incluida", "Soporte vía WhatsApp"],
+    includes: ["All-In-One Cymax 24\"", "Sistema Point Sales local", "Instalación incluida", "Soporte vía WhatsApp"],
     icon: Monitor, highlight: false, badge: null, hasCantidad: false,
   },
   {
@@ -434,7 +435,7 @@ const puestos = [
     priceEfectivo: "$1.050.000",
     cuotas: "6 cuotas de $252.000",
     desc: "Cymax 24\" + Impresora Waggs + Lector Inalámbrico + Gaveta Electrónica + Sistema Local.",
-    includes: ["All-In-One Cymax 24\"", "Impresora Waggs térmica", "Lector inalámbrico", "Gaveta electrónica", "Sistema Point Once local", "Instalación y capacitación"],
+    includes: ["All-In-One Cymax 24\"", "Impresora Waggs térmica", "Lector inalámbrico", "Gaveta electrónica", "Sistema Point Sales local", "Instalación y capacitación"],
     icon: Scan, highlight: true, badge: "Más vendido", hasCantidad: true,
   },
   {
@@ -444,7 +445,7 @@ const puestos = [
     priceEfectivo: "$1.300.000",
     cuotas: "6 cuotas de $312.000",
     desc: "Mini PC Ryzen 3 + Monitor + Impresora Waggs + Lector Inalámbrico + Gaveta Electrónica.",
-    includes: ["Mini PC Ryzen 3", "Monitor independiente", "Impresora Waggs térmica", "Lector inalámbrico", "Gaveta electrónica", "Sistema Point Once local"],
+    includes: ["Mini PC Ryzen 3", "Monitor independiente", "Impresora Waggs térmica", "Lector inalámbrico", "Gaveta electrónica", "Sistema Point Sales local"],
     icon: Cpu, highlight: false, badge: null, hasCantidad: false,
   },
 ];
@@ -540,7 +541,7 @@ function SoftwareCard() {
         <span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color: "#60a5fa", letterSpacing: "0.08em", textTransform: "uppercase" }}>Solo Software</span>
       </div>
       <p style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 4px 0" }}>Ya tenés tu equipo</p>
-      <h3 style={{ fontFamily: FD, fontSize: isMobile ? 22 : 26, fontWeight: 800, color: "#fff", margin: "0 0 20px 0" }}>Licencia Point Once</h3>
+      <h3 style={{ fontFamily: FD, fontSize: isMobile ? 22 : 26, fontWeight: 800, color: "#fff", margin: "0 0 20px 0" }}>Licencia Point Sales</h3>
 
       <div style={{ marginBottom: 22, padding: "16px 18px", borderRadius: 14, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)" }}>
         <p style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 4px 0" }}>Precio único</p>
@@ -550,7 +551,7 @@ function SoftwareCard() {
 
       <ul style={{ listStyle: "none", padding: 0, margin: "0 0 22px 0", display: "flex", flexDirection: "column", gap: 11 }}>
         {[
-          "Software Point Once completo",
+          "Software Point Sales completo",
           LICENSE_SAME_DAY_NOTE,
           "Actualizaciones incluidas",
           "Conexión nativa con AFIP",
@@ -637,6 +638,12 @@ function CombosSection() {
   );
 }
 
+// ── Cobertura / Agencia ───────────────────────────────────────────────────────
+function CoverageSection() {
+  const isMobile = useIsMobile();
+  return <ArgentinaCoverageMap isMobile={isMobile} />;
+}
+
 // ── Trust ─────────────────────────────────────────────────────────────────────
 function TrustSection() {
   const isMobile = useIsMobile();
@@ -650,10 +657,10 @@ function TrustSection() {
           <div>
             <span style={{ fontFamily: F, fontSize: 12, fontWeight: 700, color: "#60a5fa", letterSpacing: "0.1em", textTransform: "uppercase", display: "block", marginBottom: 10 }}>El Sello de Garantía</span>
             <h2 style={{ fontFamily: FD, fontSize: isMobile ? "clamp(22px,6vw,34px)" : "clamp(26px,4vw,40px)", fontWeight: 800, color: "#fff", letterSpacing: "-0.5px", lineHeight: 1.2, margin: "0 0 20px 0" }}>
-              ¿Por qué Point Once nunca te va a dejar tirado?
+              ¿Por qué Point Sales nunca te va a dejar tirado?
             </h2>
             <p style={{ fontFamily: F, fontSize: isMobile ? 15 : 17, color: "rgba(255,255,255,0.72)", lineHeight: 1.8, margin: "0 auto", maxWidth: 640 }}>
-              A diferencia de otros sistemas que se cuelgan o pierden tus datos, Point Once está construido con la misma infraestructura robusta que usamos en <strong style={{ color: "#60a5fa" }}>{AGENCIA_NAME}</strong> para empresas industriales. Servidores seguros, soporte real y conexión nativa con AFIP.
+              A diferencia de otros sistemas que se cuelgan o pierden tus datos, Point Sales está construido con la misma infraestructura robusta que usamos en <strong style={{ color: "#60a5fa" }}>{AGENCIA_NAME}</strong> para empresas industriales. Servidores seguros, soporte real y conexión nativa con AFIP.
             </p>
           </div>
         </div>
@@ -701,7 +708,7 @@ function CtaSection() {
             style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: F, fontSize: isMobile ? 16 : 18, fontWeight: 700, color: "#fff", background: "#1d4ed8", padding: isMobile ? "14px 28px" : "17px 40px", borderRadius: 14, textDecoration: "none", boxShadow: "0 8px 32px rgba(29,78,216,0.35)" }}
           >
             <MessageCircle size={20} />
-            Quiero mi Point Once
+            Quiero mi Point Sales
           </WhatsAppLinkButton>
           <a href={DEMO_URL} target="_blank" rel="noopener noreferrer" onClick={openDemo}
             style={{ display: "inline-flex", alignItems: "center", fontFamily: F, fontSize: isMobile ? 16 : 18, fontWeight: 700, color: "#1d4ed8", background: "#fff", padding: isMobile ? "14px 28px" : "17px 40px", borderRadius: 14, textDecoration: "none", border: "2px solid #bfdbfe" }}>
@@ -755,6 +762,7 @@ function PointOnceLanding() {
       <PainPointsSection />
       <FeaturesSection />
       <CombosSection />
+      <CoverageSection />
       <TrustSection />
       <CtaSection />
       <Footer />

@@ -15,22 +15,22 @@ import {
 
 const F = "'Inter', sans-serif";
 const FD = "'Plus Jakarta Sans', sans-serif";
-const POINT_LOGO_SRC = `${import.meta.env.BASE_URL}point-logo.png`;
+const POINT_LOGO_ISOTIPO = `${import.meta.env.BASE_URL}logo-point-isotipo.svg`;
 const AGENCIA_LOGO_SRC = `${import.meta.env.BASE_URL}agencia-logo.png`;
 
 function BrandLogo() {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
       <img
-        src={POINT_LOGO_SRC}
-        alt="Point Once"
+        src={POINT_LOGO_ISOTIPO}
+        alt="Point Sales"
         width={32}
         height={32}
         style={{ display: "block", objectFit: "contain", flexShrink: 0, background: "transparent" }}
       />
       <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
         <span style={{ fontFamily: FD, fontSize: 20, fontWeight: 800, color: "#0f172a", letterSpacing: "-0.5px", lineHeight: 1.1 }}>
-          Point Once
+          Point Sales
         </span>
         <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
           <img
@@ -51,7 +51,7 @@ function BrandLogo() {
 
 export function PrivacyPolicyPage() {
   useEffect(() => {
-    document.title = `Política de Privacidad | Point Once`;
+    document.title = `Política de Privacidad | Point Sales`;
   }, []);
 
   return (

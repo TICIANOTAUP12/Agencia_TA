@@ -27,13 +27,13 @@ export interface PrivacyPolicyContent {
 }
 
 export const privacyPolicyContent: PrivacyPolicyContent = {
-  siteName: "Point Once",
+  siteName: "Point Sales",
   sitePath: "https://sistemataup.online/point/",
   sections: [
     {
       title: "1. Responsable del tratamiento",
       paragraphs: [
-        `${AGENCIA_NAME}, con domicilio en ${AGENCIA_LOCATION}, es responsable del tratamiento de los datos personales recabados a través del sitio web Point Once en ${SITE_DOMAIN}/point/ (en adelante, el «Sitio»).`,
+        `${AGENCIA_NAME}, con domicilio en ${AGENCIA_LOCATION}, es responsable del tratamiento de los datos personales recabados a través del sitio web Point Sales en ${SITE_DOMAIN}/point/ (en adelante, el «Sitio»).`,
         "Al utilizar el Sitio o contactarnos, usted acepta las prácticas descritas en esta Política de Privacidad.",
       ],
     },
@@ -54,7 +54,7 @@ export const privacyPolicyContent: PrivacyPolicyContent = {
         "Utilizamos sus datos personales para las siguientes finalidades:",
       ],
       bullets: [
-        "Responder consultas sobre Point Once, combos, stock y licencias.",
+        "Responder consultas sobre Point Sales, combos, stock y licencias.",
         "Coordinar la implementación del sistema de caja en su comercio.",
         "Analizar el tráfico y el comportamiento de los visitantes para mejorar la experiencia y el contenido del Sitio.",
         "Realizar mediciones estadísticas y de marketing digital.",

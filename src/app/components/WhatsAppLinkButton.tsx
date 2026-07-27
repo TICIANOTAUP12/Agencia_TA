@@ -1,5 +1,5 @@
 import { useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
-import { trackEvent } from "../../lib/analytics";
+import { trackEvent, trackMetaLead } from "../../lib/analytics";
 import { fetchWhatsAppUrl } from "../../lib/coreApi";
 import { whatsappUrl } from "../../lib/whatsapp";
 
@@ -35,6 +35,7 @@ export function WhatsAppLinkButton({
     if (trackLabel) {
       trackEvent("whatsapp_click", { product: "point_once", label: trackLabel });
     }
+    trackMetaLead(trackLabel ?? intent ?? "whatsapp_click");
 
     try {
       const url = await fetchWhatsAppUrl({ intent, text, fallbackMessage });

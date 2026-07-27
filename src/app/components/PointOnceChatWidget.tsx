@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { MessageCircle, Send, X } from "lucide-react";
-import { trackEvent } from "../../lib/analytics";
+import { trackEvent, trackMetaLead } from "../../lib/analytics";
 import {
   getChatSessionPhone,
   sendChatMessage,
@@ -122,6 +122,7 @@ export function PointOnceChatWidget() {
   function openWhatsApp(): void {
     const url = whatsappUrlHandoff ?? whatsappUrl(WhatsAppMessages.general);
     trackEvent("whatsapp_click", { product: "point_once", label: "chat_handoff" });
+    trackMetaLead("chat_handoff");
     window.open(url, "_blank", "noopener,noreferrer");
   }
 

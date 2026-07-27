@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Point Sales">
+  <rect width="64" height="64" rx="12" fill="#1a1f26"/>
+  <path fill="#ffffff" d="M19 13h15c7.8 0 13 4.5 13 11.4 0 5.2-3 9.1-8.1 10.6L45 49H36.2L30.5 36.8H27V51H19V13zm8 16.8h6c3.2 0 5.1-1.6 5.1-4.2s-1.9-4.1-5.1-4.1H27v8.3z"/>
+  <path fill="#1a1f26" d="M19 51 27 42.5V51H19z"/>
+  <circle cx="41" cy="39.5" r="5" fill="#e8a317"/>
+</svg>

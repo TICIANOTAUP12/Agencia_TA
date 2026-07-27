@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" aria-label="Point Sales">
+  <g transform="translate(0,0)">
+    <rect width="48" height="48" rx="10" fill="#1a1f26"/>
+    <path fill="#ffffff" transform="translate(4,4) scale(0.625)" d="M18 14h14.5c8.2 0 13.5 4.6 13.5 11.6 0 5.4-3.2 9.4-8.4 10.8l6.6 13.6H36.8L31 37.2H26v13H18V14zm8 16.2h5.8c3.4 0 5.4-1.7 5.4-4.4s-2-4.3-5.4-4.3H26v8.7z"/>
+    <path fill="#1a1f26" transform="translate(4,4) scale(0.625)" d="M18 50.5 26 43v7.5H18z"/>
+    <circle cx="34.5" cy="34" r="3.6" fill="#e8a317"/>
+  </g>
+  <text x="60" y="32" font-family="Outfit, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#1a1f26">Point</text>
+  <text x="122" y="32" font-family="Outfit, Segoe UI, sans-serif" font-size="22" font-weight="700" fill="#c4860d">Sales</text>
+</svg>
