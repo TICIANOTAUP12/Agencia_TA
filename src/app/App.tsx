@@ -18,6 +18,7 @@ import {
 import { WhatsAppLinkButton } from "./components/WhatsAppLinkButton";
 import { PointOnceChatWidget } from "./components/PointOnceChatWidget";
 import { ArgentinaCoverageMap } from "./components/ArgentinaCoverageMap";
+import { DiagnosticoPage } from "./pages/DiagnosticoPage";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 
 /* MARKER-MAKE-KIT-INVOKED */
@@ -98,7 +99,8 @@ function Header() {
 
         {/* Desktop nav */}
         {!isMobile && (
-          <nav style={{ display: "flex", alignItems: "center", gap: 28 }}>
+          <nav style={{ display: "flex", alignItems: "center", gap: 18 }}>
+            <Link to="/diagnostico" style={{ fontFamily: F, fontSize: 14, fontWeight: 500, color: "#475569", textDecoration: "none" }}>Diagnóstico</Link>
             {["#funcionalidades:Funcionalidades", "#combos:Combos", "#cobertura:Cobertura", "#garantia:Garantía"].map(item => {
               const [href, label] = item.split(":");
               return (
@@ -137,6 +139,10 @@ function Header() {
       {/* Mobile menu */}
       {isMobile && menuOpen && (
         <div style={{ padding: "16px 20px 24px", borderTop: "1px solid rgba(15,23,42,0.06)", display: "flex", flexDirection: "column", gap: 12 }}>
+          <Link to="/diagnostico" onClick={() => setMenuOpen(false)}
+            style={{ fontFamily: F, fontSize: 16, fontWeight: 600, color: "#0f172a", textDecoration: "none", padding: "10px 0", borderBottom: "1px solid rgba(15,23,42,0.06)" }}>
+            Diagnóstico
+          </Link>
           {["#funcionalidades:Funcionalidades", "#combos:Combos", "#cobertura:Cobertura", "#garantia:Garantía"].map(item => {
             const [href, label] = item.split(":");
             return (
@@ -776,6 +782,7 @@ export default function App() {
     <BrowserRouter basename={routerBasename}>
       <Routes>
         <Route path="/" element={<PointOnceLanding />} />
+        <Route path="/diagnostico" element={<DiagnosticoPage />} />
         <Route path="/politica-de-privacidad" element={<PrivacyPolicyPage />} />
       </Routes>
     </BrowserRouter>

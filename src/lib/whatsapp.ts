@@ -47,6 +47,15 @@ export const WhatsAppMessages = {
 
   stock:
     "Hola, consulto plazos de entrega de equipos Point Once. Entiendo que se piden a proveedor y con seña la entrega suele ser en menos de una semana. ¿Qué combo me recomiendan?",
+
+  tradeIn:
+    "Hola, vi la promo de canje Point Sales. Quiero que tomen mi equipo actual como parte de pago y lo reemplacen por reacondicionado o nuevo + el sistema. ¿Me confirman cobertura e instalación en mi local?",
+
+  erpDemo:
+    "Hola, vi la promo de ERP personalizado. Quiero una demo de 15 minutos. Busco un sistema a medida (ventas, compras, pagos y stock) sin perder cómo trabaja mi empresa.",
+
+  diagnostico:
+    "Hola, completé el diagnóstico rápido de Point Sales y quiero el asistente gratuito para mejorar la gestión de mi comercio.",
 } as const;
 
 export type PointOnceFeatureId =

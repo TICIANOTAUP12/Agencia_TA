@@ -35,6 +35,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/core/, ''),
       },
+      '/api/diagnostico-api': {
+        target: 'http://127.0.0.1:3041',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/diagnostico-api/, ''),
+      },
     },
   },
   plugins: [

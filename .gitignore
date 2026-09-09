@@ -7,6 +7,12 @@ node_modules/
 .env.*.local
 !.env.example
 
+# SQLite del diagnóstico
+server/data/*.sqlite3
+server/data/*.sqlite
+__pycache__/
+server/.venv/
+
 # Build output
 dist/
 build/
