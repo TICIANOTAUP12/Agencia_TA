@@ -1,5 +1,5 @@
 import { useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import {
   ArrowLeft,
   ArrowRight,
@@ -180,11 +180,11 @@ const fieldStyle: CSSProperties = {
 };
 
 export function DiagnosticoPage() {
+  const navigate = useNavigate();
   const [stepIndex, setStepIndex] = useState(0);
   const [form, setForm] = useState<FormState>(EMPTY);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [savedId, setSavedId] = useState<number | null>(null);
 
   const step = STEPS[stepIndex];
   const progress = ((stepIndex + 1) / STEPS.length) * 100;
@@ -253,85 +253,24 @@ export function DiagnosticoPage() {
         comercio: form.comercio.trim(),
         whatsapp: form.whatsapp.trim(),
       });
-      setSavedId(result.id);
       trackEvent("diagnostico_saved", {
         product: "point_once",
         source: "diagnostico",
-        id: result.id,
+        id: String(result.id),
+      });
+      navigate("/diagnostico/gracias", {
+        replace: true,
+        state: {
+          id: result.id,
+          nombre: form.nombre.trim(),
+          comercio: form.comercio.trim(),
+        },
       });
     } catch (err) {
       setError(err instanceof Error ? err.message : "No se pudo guardar");
     } finally {
       setIsSubmitting(false);
     }
-  }
-
-  const assistMessage =
-    `Hola, completé el diagnóstico rápido de Point Sales (#${savedId ?? ""}). ` +
-    `Comercio: ${form.comercio}. Quiero el asistente gratuito para mejorar la gestión.`;
-
-  if (savedId !== null) {
-    return (
-      <div style={{ fontFamily: F, minHeight: "100vh", background: "linear-gradient(165deg,#fff 0%,#eff6ff 55%,#dbeafe 100%)" }}>
-        <div style={{ maxWidth: 640, margin: "0 auto", padding: "48px 20px 80px" }}>
-          <div className="po-card po-card--elevated" style={{ borderRadius: 24, padding: "40px 28px", textAlign: "center" }}>
-            <div
-              style={{
-                width: 64,
-                height: 64,
-                borderRadius: 18,
-                background: "#ecfdf5",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginBottom: 18,
-              }}
-            >
-              <CheckCircle2 size={32} color="#059669" />
-            </div>
-            <h1 style={{ fontFamily: FD, fontSize: "clamp(26px,6vw,36px)", fontWeight: 800, color: "#0f172a", margin: "0 0 12px", letterSpacing: "-0.5px" }}>
-              Diagnóstico guardado
-            </h1>
-            <p style={{ fontFamily: F, fontSize: 16, color: "#475569", lineHeight: 1.7, margin: "0 0 28px" }}>
-              Gracias, {form.nombre}. Ya tenemos el perfil de <strong>{form.comercio}</strong>.
-              Accedé al asistente gratuito pensado para comercios retail: precios, márgenes, costos, stock y decisiones.
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
-              <a
-                href={whatsappUrl(assistMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackEvent("diagnostico_asistente_wa", { product: "point_once" })}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 10,
-                  fontFamily: F,
-                  fontSize: 16,
-                  fontWeight: 700,
-                  color: "#fff",
-                  background: "#1d4ed8",
-                  padding: "14px 26px",
-                  borderRadius: 12,
-                  textDecoration: "none",
-                  boxShadow: "0 8px 28px rgba(29,78,216,0.35)",
-                }}
-              >
-                <MessageCircle size={18} />
-                Abrir asistente por WhatsApp
-              </a>
-              <Link
-                to="/"
-                style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: "#1d4ed8", textDecoration: "none" }}
-              >
-                Volver a Point Sales
-              </Link>
-            </div>
-          </div>
-        </div>
-        <PointOnceChatWidget />
-      </div>
-    );
   }
 
   return (
